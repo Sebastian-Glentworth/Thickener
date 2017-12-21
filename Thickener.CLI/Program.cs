@@ -1,4 +1,5 @@
 ﻿using System;
+using Thicken;
 
 namespace Thickener.CLI
 {
@@ -6,7 +7,21 @@ namespace Thickener.CLI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            if (args.Length == 0)
+            {
+                Console.OutputEncoding = System.Text.Encoding.Unicode;
+                Console.WriteLine("Enter string to thicken");
+                var thickened = Console.ReadLine().Thicken();
+                Console.WriteLine(thickened);
+                Console.ReadKey();
+            }
+            else
+            {
+                foreach (var a in args)
+                {
+                    Console.Write(a.Thicken() + " ");
+                }
+            }
         }
     }
 }
