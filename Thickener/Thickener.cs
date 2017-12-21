@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Thicken
+namespace Thickener
 {
     public static class Thickener
     {
@@ -15,10 +15,9 @@ namespace Thicken
 
         public static char Thicken(this char c)
         {
-            char.ToLowerInvariant(c);
             //Use switch case to convert to the thicken alphabet
             //卂乃匚刀乇下厶卄工丁长乚从𠘨口尸㔿尺丂丅凵リ山乂丫乙
-            switch (c)
+            switch (char.ToLowerInvariant(c))
             {
                 case 'a':
                     c = '卂';
@@ -99,8 +98,8 @@ namespace Thicken
                     c = '乙';
                     break;
                 default:
-                    //default to unknown character, I guess?
-                    c = '�';
+                    //initially converted unknown characters to �
+                    //caused more trouble than it was worth
                     break;
             }
             return c;

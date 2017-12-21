@@ -1,5 +1,5 @@
 ﻿using System;
-using Thicken;
+using Thickener;
 
 namespace Thickener.CLI
 {
