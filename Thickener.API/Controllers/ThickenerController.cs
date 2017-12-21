@@ -11,9 +11,6 @@ namespace Thickener.API.Controllers
     public class ThickenerController
     {
         [HttpPost]
-        public string Thicken(string thinString)
-        {
-            return thinString.Thicken();
-        }
+        public string Thicken(string thinString) => thinString.Thicken();
     }
 }
