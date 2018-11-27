@@ -6,103 +6,49 @@ namespace Thickener
 {
     public static class Thickener
     {
-        public static string Thicken(this string s){
+        private static Dictionary<char, char> mappings = new Dictionary<char, char>
+        {
+            { 'a','卂' },
+            { 'b','乃' },
+            { 'c','匚' },
+            { 'd','刀' },
+            { 'e','乇' },
+            { 'f','下' },
+            { 'g','厶' },
+            { 'h','卄' },
+            { 'i','工' },
+            { 'j','丁' },
+            { 'k','长' },
+            { 'l','乚' },
+            { 'm','从' },
+            { 'n','几' },
+            { 'o','口' },
+            { 'p','尸' },
+            { 'q','㔿' },
+            { 'r','尺' },
+            { 's','丂' },
+            { 't','丅' },
+            { 'u','凵' },
+            { 'v','リ' },
+            { 'w','山' },
+            { 'x','乂' },
+            { 'y','丫' },
+            { 'z','乙' },
+        };
 
-            return new String(s.ToCharArray()
+        public static string Thicken(this string s)
+        {
+            return new string(s.ToCharArray()
                 .Select(c => c.Thicken())
                 .ToArray());
         }
 
         public static char Thicken(this char c)
         {
-            //Use switch case to convert to the thicken alphabet
-            //卂乃匚刀乇下厶卄工丁长乚从𠘨口尸㔿尺丂丅凵リ山乂丫乙
-            switch (char.ToLowerInvariant(c))
-            {
-                case 'a':
-                    c = '卂';
-                    break;
-                case 'b':
-                    c = '乃';
-                    break;
-                case 'c':
-                    c = '匚';
-                    break;
-                case 'd':
-                    c = '刀';
-                    break;
-                case 'e':
-                    c = '乇';
-                    break;
-                case 'f':
-                    c = '下';
-                    break;
-                case 'g':
-                    c = '厶';
-                    break;
-                case 'h':
-                    c = '卄';
-                    break;
-                case 'i':
-                    c = '工';
-                    break;
-                case 'j':
-                    c = '丁';
-                    break;
-                case 'k':
-                    c = '长';
-                    break;
-                case 'l':
-                    c = '乚';
-                    break;
-                case 'm':
-                    c = '从';
-                    break;
-                case 'n':
-                    c = '几';
-                    break;
-                case 'o':
-                    c = '口';
-                    break;
-                case 'p':
-                    c = '尸';
-                    break;
-                case 'q':
-                    c = '㔿';
-                    break;
-                case 'r':
-                    c = '尺';
-                    break;
-                case 's':
-                    c = '丂';
-                    break;
-                case 't':
-                    c = '丅';
-                    break;
-                case 'u':
-                    c = '凵';
-                    break;
-                case 'v':
-                    c = 'リ';
-                    break;
-                case 'w':
-                    c = '山';
-                    break;
-                case 'x':
-                    c = '乂';
-                    break;
-                case 'y':
-                    c = '丫';
-                    break;
-                case 'z':
-                    c = '乙';
-                    break;
-                default:
-                    //initially converted unknown characters to �
-                    //caused more trouble than it was worth
-                    break;
-            }
-            return c;
+            return mappings
+                .ContainsKey(char.ToLowerInvariant(c))
+                ? mappings.FirstOrDefault(d => d.Key == char.ToLowerInvariant(c)).Value
+                : c;
         }
     }
 }
